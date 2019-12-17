@@ -886,7 +886,7 @@ public class BrokerController {
             handleSlaveSynchronize(messageStoreConfig.getBrokerRole());
             this.registerBrokerAll(true, false, true);
         }
-
+       //每隔30秒，向所有NameServer发送心跳，NameServer 收到broker心跳包时，更新brokerLiveTable缓存
         this.scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
 
             @Override
@@ -897,6 +897,7 @@ public class BrokerController {
                     log.error("registerBrokerAll Exception", e);
                 }
             }
+            //这里的时间，最后处理后是30s，感觉是作者没有实现参数配置话
         }, 1000 * 10, Math.max(10000, Math.min(brokerConfig.getRegisterNameServerPeriod(), 60000)), TimeUnit.MILLISECONDS);
 
         if (this.brokerStatsManager != null) {
