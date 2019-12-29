@@ -50,7 +50,7 @@ public class TopicConfig {
         sb.append(SEPARATOR);
         sb.append(this.readQueueNums);
         sb.append(SEPARATOR);
-        sb.append(this.writeQueueNums);
+        sb.append(this.writeQueueNums); 
         sb.append(SEPARATOR);
         sb.append(this.perm);
         sb.append(SEPARATOR);
